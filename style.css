@@ -25,37 +25,17 @@
 }
 
 
-/* gammel kode*/
-/* .navbar a {
-color: aquamarine;
-background-color: cadetblue;
-padding: 10px;
-border-radius: 20px;
-text-decoration: none;
-} */
-/*
-.navbar a:hover {
-    font-size: 18px;
-}
-*/
-
-
 /* Body Sektionen */
 html, body {
-    /*margin: 0;
-    padding: 0;
-    height: 100%; */
     overflow-x: hidden;
     overscroll-behavior: none;
 
     /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-
     body::-webkit-scrollbar {
         display: none;
     }
 
     /* Hide scrollbar for IE, Edge, and Firefox */
-
     body {
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
@@ -106,116 +86,123 @@ body.dark-mode::after {
     pointer-events: none; /* Ensure the overlay doesn't block clicks (Taget fra ChatGPT)*/
 }
 
-.my-name {
-    display: flex;
+/* Overskrift sektionen */
+@media (min-width: 901px) {
+    .my-name {
+        display: flex;
+        min-height: 100vh;        
+        
+        justify-content: center; 
+        align-items: flex-start; 
+        padding-top: 15vh;
+    }
 }
 
 .my-name div {
     position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-left: 23vw;
-    margin-top: 15vh;
-    width: 46vw;
-    height: 15vh;
+
+    /*margin-left: 23vw;
+    margin-top: 15vh;*/
+    
+    width: min(46vw, 900px);
+    height: auto;
+    min-height: 0px;
+
+    padding: 20px 20px;
+    /*gap: 10px;*/
+
     background-color: rgba(54, 57, 90, 0.15);
-    padding: 10px;
     border-radius: 15px;
     z-index: 1;
 }
 
 /* Main sektionen */
 .my-name h1 {
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    margin-top: -0.5vh;
+    position: static;
+    margin: 0;
+    text-align: center;
     font-family: "Red hat Display", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 500;
-    font-style: normal;
-    font-size: 48px;
+    font-size: clamp(28px, 4vw, 48px);
     color: azure;
 }
 
 .my-name p {
-    position: absolute;
-    display: inline-block;
-    margin-top: 9vh;
+    position: static;
+    margin: 0;
+    text-align: center;
     font-family: "Red hat Display", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
+    font-size: clamp(16px, 2vw, 20px);
     color: azure;
 }
 
+
 /* About me sektionen */
+.about-me {
+    display: flex;
+    align-items: flex-start; /* linjer toppen af billede og boks */
+    justify-content: flex-start;
+    gap: 0; /* vi styrer overlap med margin i stedet */
+    background-color: rgb(194, 225, 255);
+    padding: 35px 0 35px 35px;          /* ingen padding i højre side, så boksen kan gå helt ud */
+    min-height: 74vh;                   /* bedre end fast height når indhold varierer */
+    position: relative; /* ?? */
+}
+
 .pic-of-me {
-    width: auto;
-    height: auto;
-    display: inline-block;
+    flex: 0 0 clamp(220px, 28vw, 420px); /* fast “kolonne” til billedet */
+    position: relative;
+    z-index: 1;                          /* ligger under boksen, når boksen overlapper */
 }
 
 .pic-of-me img {
-    position: relative;
-    top: 25px;
-    left: -25px;
-    width: auto;
-    height: 50%;
-    object-fit: contain;
-}
-
-.about-me {
-    display: flex;
-}
-
-.about-me {
-    background-color: rgb(194, 225, 255);
-    height: 74vh;
-    padding: 35px;
+   display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* fjern “nudging” så den kan line up pænt */
+    position: static;
 }
 
 .about-list {
-    display: flex;
-    align-items: flex-start;
+    flex: 1;                              /* fylder resten og går helt ud til højre */
+    margin-left: clamp(25px, -6vw, -40px); /* overlap ind over billedet (justér efter smag) */
+    padding: 16px 20px;
+    min-height: 10vh;
+
     background-color: rgba(54, 57, 90, 0.15);
-    padding: 10px;
     border-radius: 15px;
     color: azure;
-    height: 25vh;
-    width: 100vw;
-    margin-top: 8vh;
+
+    z-index: 2;                           /* sikrer boksen ligger ovenpå billedet */
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Hvordan virker dette??? */
+    align-items: start;
 }
 
-.about-list h2 {
-    position: relative;
-    bottom: 2vh;
-    margin-left: 5vh;
-    width: 30vw;
-    font-size: 30px;
-    font-optical-sizing: auto;
-    /* Flyt den lidt op? */
+.about-title {
+  grid-column: 1 / -1; /* "Om mig" overskriften går over hele bredden */
+  margin: 0 0 8px 0;
 }
 
 .about-list ul {
-    margin-top: 7vh;
-    position: relative;
-    right: 28vw;
-    bottom: 2vh;
-    list-style-type: none;
-    width: 25vw;
-    font-optical-sizing: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.empty-space {
-    min-height: 100vh;
-}
 
 /* Footer sektionen */
 footer {
     padding: 1%;
-    background-color: rgb(194, 225, 255);
+    background-color: rgb(165, 209, 253);
+    z-index: 1; 
 }
 
 
@@ -308,7 +295,7 @@ html {
 }
 
 .rocker-small {
-    font-size: 0.75em; /* Sizes the switch */
+    font-size: 0.80em; /* Sizes the switch */
     margin: 1em;
 }
 
@@ -354,7 +341,7 @@ html {
 .switch-right {
     right: 0.5em;
     bottom: 0;
-    background-color: #bd5757;
+    background-color: #e6ae16;
     color: #fff;
 }
 
@@ -380,7 +367,7 @@ html {
 }
 
 input:checked + .switch-left {
-    background-color: #0084d0;
+    background-color: #2c2a2a;
     color: #fff;
     bottom: 0px;
     left: 0.5em;
