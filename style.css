@@ -26,25 +26,35 @@
 
 
 /* Body Sektionen */
-html, body {
+html {
+    height: 100%;
+    overflow-y: auto;
     overflow-x: hidden;
+}
+
+body {
+    overflow: visible;
     overscroll-behavior: none;
+}
 
-    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
-    body::-webkit-scrollbar {
-        display: none;
-    }
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 
-    /* Hide scrollbar for IE, Edge, and Firefox */
-    body {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
+/* Hide scrollbar for IE, Edge, and Firefox */
+html,
+body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 body {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     margin: 0;
 }
 
@@ -54,7 +64,7 @@ body::before {
     top: 0;
     left: 0;
     width: 100%;
-    height: 150%;
+    bottom: 0;
     background-image: url('a22adf5f-3d6c-488c-b166-f1b8e4b701f7.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -67,8 +77,8 @@ body::after {
     position: absolute;
     top: 0;
     left: 0;
-    height: 150%;
-    width: 125%;
+    bottom: 0;
+    width: 100%;
     background-color: rgba(194, 225, 255, 0.75);
     z-index: -1;
     pointer-events: none; /* Ensure the overlay doesn't block clicks (Taget fra ChatGPT)*/
@@ -79,8 +89,8 @@ body.dark-mode::after {
     position: absolute;
     top: 0;
     left: 0;
-    height: 150%;
-    width: 125%;
+    bottom: 0;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: -1;
     pointer-events: none; /* Ensure the overlay doesn't block clicks (Taget fra ChatGPT)*/
@@ -148,7 +158,7 @@ body.dark-mode::after {
     align-items: flex-start; /* linjer toppen af billede og boks */
     justify-content: flex-start;
     gap: 0; /* vi styrer overlap med margin i stedet */
-    background-color: rgb(194, 225, 255);
+    background-color: transparent;
     padding: 35px 0 35px 35px;          /* ingen padding i højre side, så boksen kan gå helt ud */
     min-height: 74vh;                   /* bedre end fast height når indhold varierer */
     position: relative; /* ?? */
